@@ -1,6 +1,6 @@
 // criando função que recebe uma lista de inteiros como parâmetro
 void insertionSort(List<int> list) {
-// pegando a quantidade de elemento na lista e guardando na variavel n
+// pegando a quantidade de elemento na lista e guardando na variavel "n"
   int n = list.length;
 // criando um loop que percorre a lista a partir do segundo número (i = 1), porque o primeiro é considerado ordenado
   for (int i = 1; i < n; i++) {
@@ -89,6 +89,42 @@ void insertionSort4(List<int> list4) {
   }
 }
 
+void insertionSort5(List<int> list5) {
+  int n = list5.length;
+  for (int i = 1; i < n; i++) {
+    int key = list5[i];
+    int j = i - 1;
+    while (j >= 0 && list5[j] > key) {
+      list5[j + 1] = list5[j];
+      j = j - 1;
+    }
+    list5[j + 1] = key;
+  }
+}
+
+/* 
+Considere o problema de busca:
+Entrada: Uma sequência de n números A = 〈a1, a2, ..., an〉 e um valor v.
+Saída: Um índice i tal que v = A[i] ou o valor especial NIL, se v não aparecer em A.
+Escreva o pseudocódigo para busca linear, que faça a varredura da sequência, procurando por v. Usando
+um invariante de laço, prove que seu algoritmo é correto. Certifique-se de que seu invariante de laço satisfaz
+as três propriedades necessárias.
+*/
+
+int questLinear(List<int> a, int v) {
+  int i =
+      -1; // Inicializa o índice como -1, indicando que o elemento não foi encontrado ainda.
+  for (int j = 0; j < a.length; j++) {
+    // Inicia um loop que percorre cada elemento da lista.
+    if (a[j] == v) {
+      // Verifica se o elemento atual é igual ao valor que estamos procurando.
+      i = j; // Se for igual, atualiza o índice para o valor atual de j (a posição onde o elemento foi encontrado).
+      break; // Encerra o loop, pois encontramos o elemento que estávamos procurando.
+    }
+  }
+  return i; // Retorna o índice encontrado ou -1 se o elemento não estiver na lista.
+}
+
 void main() {
   // nosso array com os nums
   List<int> nums = [12, 11, 13, 5, 6];
@@ -118,4 +154,10 @@ void main() {
   print('nossa lista do exercicio 4 antes da ordenação: $nums4');
   insertionSort1(nums4);
   print('nossa lista do exercicio 4 depois da ordenação: $nums4');
+
+  List<int> nums5 = [31, 41, 59, 26, 41, 58];
+  print('nossa lista do exercicio do livro antes da ordenação: $nums5');
+  insertionSort5(nums5);
+  print('nossa lista do exercicio do livro depois da ordenação: $nums5');
+  print(questLinear([31, 41, 59, 26, 41, 58], 58));
 }
